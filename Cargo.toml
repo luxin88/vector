@@ -339,6 +339,9 @@ async-graphql-warp = { version = "7.0.17", default-features = false, optional = 
 
 hex = { version = "0.4.3", default-features = false, optional = true }
 
+# Huawei Cloud dependencies
+hmac-sha1 = { version = "0.2.2", optional = true }
+
 # GreptimeDB
 greptimedb-ingester = { git = "https://github.com/GreptimeTeam/greptimedb-ingester-rust", rev = "f7243393808640f5123b0d5b7b798da591a4df6e", optional = true }
 
@@ -634,6 +637,7 @@ sources-logs = [
   "sources-syslog",
   "sources-vector",
   "sources-websocket",
+  "sources-huawei_obs",
 ]
 sources-metrics = [
   "dep:prost",
@@ -720,6 +724,8 @@ sources-utils-net-tcp = ["listenfd", "dep:ipnet"]
 sources-utils-net-udp = ["listenfd"]
 sources-utils-net-unix = []
 sources-websocket = ["dep:tokio-tungstenite"]
+
+sources-huawei_obs = ["dep:hmac-sha1", "dep:base64", "dep:async-compression"]
 
 sources-vector = ["dep:prost", "dep:tonic", "protobuf-build"]
 
@@ -827,6 +833,7 @@ sinks-logs = [
   "sinks-webhdfs",
   "sinks-websocket",
   "sinks-websocket-server",
+  "sinks-huawei_obs",
 ]
 sinks-metrics = [
   "sinks-appsignal",
@@ -900,6 +907,8 @@ sinks-vector = ["sinks-utils-udp", "dep:tonic", "protobuf-build", "dep:prost"]
 sinks-websocket = ["dep:tokio-tungstenite"]
 sinks-websocket-server = ["dep:tokio-tungstenite", "sources-utils-http-auth", "sources-utils-http-error", "sources-utils-http-prelude"]
 sinks-webhdfs = ["dep:opendal"]
+
+sinks-huawei_obs = ["dep:hmac-sha1", "dep:base64"]
 
 # Identifies that the build is a nightly build
 nightly = []

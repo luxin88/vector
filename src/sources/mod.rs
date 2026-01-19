@@ -95,6 +95,9 @@ pub mod vector;
 #[cfg(feature = "sources-websocket")]
 pub mod websocket;
 
+#[cfg(feature = "sources-huawei_obs")]
+pub mod huawei_obs;
+
 pub mod util;
 
 pub use vector_lib::source::Source;
